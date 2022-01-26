@@ -14,7 +14,7 @@
 
     <style>
       body { 
-        font-family: 'Roboto Condensed', sans-serif !important;
+        font-family: 'Roboto Condensed',sans-serif !important;
         text-align: center; padding: 20px; 
         background-color:rgb(39, 40, 34);
         color: rgb(184, 184, 194);
@@ -22,16 +22,20 @@
       h1 { font-size: 46px; }
       h3 { font-size: 30px; }
       
-      article { display: block; text-align: left; width: 360px; margin: 0 auto; }
+      article { display: block; text-align: left; width: 360px; margin: 0 auto; 
+        
+      }
       a { color: hsl(216, 37%, 55%); text-decoration: none; }
       a:hover { color: #434344; text-decoration: none; }
-      img { width: 36%; float: left; padding: 20px; padding-right: 30px; padding-bottom: 20px;}
+      .circle { width: 36%; float: left; padding: 20px; 
+        shape-outside: circle(50%);
+      }
     </style>
 </head>
 
 <body>
 
-  <img src="kuip.png" />
+  <img class="circle" src="kuip.png" />
 
     <article>
       <br>
