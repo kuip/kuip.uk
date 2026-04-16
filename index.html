@@ -11,6 +11,8 @@
     <meta name="author" content="Kuip Limited">
     <meta name="robots" content="index, follow, max-image-preview:large">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="rgb(35, 36, 39)" media="(prefers-color-scheme: dark)">
+    <meta name="theme-color" content="rgb(246, 244, 238)" media="(prefers-color-scheme: light)">
     <link rel="canonical" href="https://www.kuip.co.uk/" />
     <link rel="alternate" type="text/plain" href="/llms.txt" title="Information for AI agents">
     <link rel="icon" href="/favicon.ico" sizes="48x48">
@@ -102,10 +104,29 @@
     <style>
       body {
         --page-bg: rgb(35, 36, 39);
+        --text-color: rgb(184, 184, 194);
+        --link-color: hsl(216, 37%, 55%);
+        --link-hover-color: rgb(230, 230, 235);
+        --logo-glow-r: 255;
+        --logo-glow-g: 255;
+        --logo-glow-b: 255;
+        color-scheme: dark;
         font-family: 'Roboto Condensed',sans-serif !important;
         text-align: center; padding: 20px;
         background-color: var(--page-bg);
-        color: rgb(184, 184, 194);
+        color: var(--text-color);
+      }
+      @media (prefers-color-scheme: light) {
+        body {
+          --page-bg: rgb(246, 244, 238);
+          --text-color: rgb(40, 41, 45);
+          --link-color: hsl(216, 42%, 42%);
+          --link-hover-color: rgb(0, 0, 0);
+          --logo-glow-r: 35;
+          --logo-glow-g: 36;
+          --logo-glow-b: 39;
+          color-scheme: light;
+        }
       }
       h1 { font-size: 46px; }
       h3 { font-size: 30px; }
@@ -113,22 +134,22 @@
       article { display: block; text-align: left; width: 360px; margin: 0 auto;
 
       }
-      a { color: hsl(216, 37%, 55%); text-decoration: none; }
-      a:hover { color: #434344; text-decoration: none; }
-      .circle { width: 36%; float: left; padding: 20px;
+      a { color: var(--link-color); text-decoration: none; }
+      a:hover { color: var(--link-hover-color); text-decoration: none; }
+      .circle { width: 36%; float: left; padding: 20px; margin-right: 20px;
         shape-outside: circle(50%);
       }
       .logo-field {
-        --logo-light: 0;
+        --logo-center: 0;
         --logo-mid: 0;
         --logo-soft: 0;
         background:
           radial-gradient(
             circle at center,
-            rgba(255, 255, 255, var(--logo-light)) 0%,
-            rgba(255, 255, 255, var(--logo-mid)) 42%,
-            rgba(255, 255, 255, var(--logo-soft)) 68%,
-            rgba(255, 255, 255, 0) 88%
+            rgba(var(--logo-glow-r), var(--logo-glow-g), var(--logo-glow-b), var(--logo-center)) 0%,
+            rgba(var(--logo-glow-r), var(--logo-glow-g), var(--logo-glow-b), var(--logo-mid)) 42%,
+            rgba(var(--logo-glow-r), var(--logo-glow-g), var(--logo-glow-b), var(--logo-soft)) 68%,
+            rgba(var(--logo-glow-r), var(--logo-glow-g), var(--logo-glow-b), 0) 88%
           ),
           var(--page-bg);
         border-radius: 50%;
@@ -190,14 +211,14 @@
       var distance = Math.hypot(event.clientX - centerX, event.clientY - centerY);
       var strength = Math.max(0, 1 - distance / maxDistance);
 
-      logoField.style.setProperty('--logo-light', strength.toFixed(3));
+      logoField.style.setProperty('--logo-center', strength.toFixed(3));
       logoField.style.setProperty('--logo-mid', (strength * 0.72).toFixed(3));
       logoField.style.setProperty('--logo-soft', (strength * 0.28).toFixed(3));
     }
 
     logoField.addEventListener('pointermove', setLightFromPointer);
     logoField.addEventListener('pointerleave', function () {
-      logoField.style.setProperty('--logo-light', '0');
+      logoField.style.setProperty('--logo-center', '0');
       logoField.style.setProperty('--logo-mid', '0');
       logoField.style.setProperty('--logo-soft', '0');
     });
