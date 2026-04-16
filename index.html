@@ -101,9 +101,10 @@
 
     <style>
       body {
+        --page-bg: rgb(35, 36, 39);
         font-family: 'Roboto Condensed',sans-serif !important;
         text-align: center; padding: 20px;
-        background-color:rgb(39, 40, 34);
+        background-color: var(--page-bg);
         color: rgb(184, 184, 194);
       }
       h1 { font-size: 46px; }
@@ -117,12 +118,35 @@
       .circle { width: 36%; float: left; padding: 20px;
         shape-outside: circle(50%);
       }
+      .logo-field {
+        --logo-light: 0;
+        --logo-mid: 0;
+        --logo-soft: 0;
+        background:
+          radial-gradient(
+            circle at center,
+            rgba(255, 255, 255, var(--logo-light)) 0%,
+            rgba(255, 255, 255, var(--logo-mid)) 42%,
+            rgba(255, 255, 255, var(--logo-soft)) 68%,
+            rgba(255, 255, 255, 0) 88%
+          ),
+          var(--page-bg);
+        border-radius: 50%;
+        overflow: hidden;
+      }
+      .logo-field img {
+        display: block;
+        width: 100%;
+        height: auto;
+      }
     </style>
 </head>
 
 <body>
 
-  <img class="circle" src="kuip.png" />
+  <div class="circle logo-field" aria-label="Kuip Limited logo">
+    <img src="kuip.png" alt="" />
+  </div>
 
     <main>
     <article>
@@ -152,6 +176,33 @@
         </div>
     </article>
     </main>
+
+<script>
+  (function () {
+    var logoField = document.querySelector('.logo-field');
+    if (!logoField) return;
+
+    function setLightFromPointer(event) {
+      var rect = logoField.getBoundingClientRect();
+      var centerX = rect.left + rect.width / 2;
+      var centerY = rect.top + rect.height / 2;
+      var maxDistance = Math.min(rect.width, rect.height) / 2;
+      var distance = Math.hypot(event.clientX - centerX, event.clientY - centerY);
+      var strength = Math.max(0, 1 - distance / maxDistance);
+
+      logoField.style.setProperty('--logo-light', strength.toFixed(3));
+      logoField.style.setProperty('--logo-mid', (strength * 0.72).toFixed(3));
+      logoField.style.setProperty('--logo-soft', (strength * 0.28).toFixed(3));
+    }
+
+    logoField.addEventListener('pointermove', setLightFromPointer);
+    logoField.addEventListener('pointerleave', function () {
+      logoField.style.setProperty('--logo-light', '0');
+      logoField.style.setProperty('--logo-mid', '0');
+      logoField.style.setProperty('--logo-soft', '0');
+    });
+  }());
+</script>
 
 </body>
 
