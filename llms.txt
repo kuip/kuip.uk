@@ -1,0 +1,27 @@
+# Kuip Limited
+
+> Infrastructure for verifiable digital systems.
+
+Kuip Limited builds blockchain infrastructure, WebAssembly execution systems, cryptographic protocols, and distributed computing systems.
+
+## Primary Capabilities
+
+- Blockchain infrastructure design and implementation
+- WebAssembly-based execution environments
+- Cryptographic protocols and proof systems
+- Deterministic execution environments
+- Ethereum Virtual Machine and Cosmos SDK engineering
+- High-performance data architectures
+
+## Selected Work
+
+- wasmX: https://wasmx.provable.dev/
+- Provable: https://provable.dev/
+
+Provable is high-throughput cryptographic integrity infrastructure for time ordered data streams, with nanosecond precision.
+
+## Contact
+
+- Website: https://www.kuip.co.uk/
+- Email: founder@kuip.co.uk
+- Company: Kuip Limited, Ireland CRO 570321

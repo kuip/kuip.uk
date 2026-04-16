@@ -1,8 +1,4 @@
 User-agent: *
-Allow: /
-Disallow: /*.png$
-Disallow: /*.jpg$
-Disallow: /*.svg$
-Disallow: /*.ico$
+Disallow:
 
 Sitemap: https://www.kuip.co.uk/sitemap.xml
